@@ -1,5 +1,7 @@
 /* [Title] */
 Title="Lockwood";
+Thickness=2;
+
 /* [Pin Parameters] */
 Number_of_Pins=11;
 // The diameter of the pins (in inches)
@@ -18,7 +20,7 @@ Font_Depth=-0.75; // 0.1
 Number_of_Fragments=6;
 
 $fn=pow(2,Number_of_Fragments);
-d=thou(Pin_Diameter);
+d=thou(Pin_Diameter*2);
 s=thou(Pin_Height_Step);
 b=thou(Pin_Height_Base);
 num=Number_of_Pins;
@@ -26,18 +28,23 @@ r=d/2;
 
 difference() {
 	translate([-2.5,-Font_Size-1,0])
-		cube([num*d+5,b+num*s+Font_Size+2,1]);
-	for (i=[0:num-1])
-		translate([i*d,0,-0.01])
-			cube([d*1.01,b+s*i,10]);
+		cube([num*d+5,b+num*s+Font_Size+2,Thickness]);
+	pins();
 	markings();
 }
 if(Font_Depth>0) markings();
 
 function thou(inch)=inch*25.4;
 
+module pins() {
+	color("red")
+	for (i=[0:num-1])
+		translate([i*d,0,-Thickness/2])
+			cube([d*1.01,b+s*i,Thickness*2]);
+}
+
 module markings() {
-	translate([0,0,1]) {
+	translate([0,0,Thickness]) {
 		for (i=[0:num-1])
 			translate([i*d+r,-0.5,0])
 				if(Font_Depth<0)
