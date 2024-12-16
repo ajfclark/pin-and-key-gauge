@@ -1,6 +1,6 @@
 /* [Title] */
 Title="Lockwood";
-Thickness=2;
+Thickness=2; // 0.1
 
 /* [Pin Parameters] */
 Number_of_Pins=11;
@@ -17,7 +17,7 @@ Font_Depth=-0.75; // 0.1
 
 /* [Rendering Options] */
 // Number of fragments, expressed as a power of 2
-Number_of_Fragments=6;
+Number_of_Fragments=4;
 
 $fn=pow(2,Number_of_Fragments);
 d=thou(Pin_Diameter*2);
@@ -28,7 +28,7 @@ r=d/2;
 
 difference() {
 	translate([-2.5,-Font_Size-1,0])
-		cube([num*d+5,b+num*s+Font_Size+2,Thickness]);
+		cube([num*d+5,b+num*s+Font_Size*2+2,Thickness]);
 	pins();
 	markings();
 }
@@ -69,5 +69,5 @@ module number(i) {
 module title() {
 	color("blue")
 		linear_extrude(height=abs(Font_Depth))
-			text(Title,size=Font_Size,halign="left", valign="top",font="DejaVu Sans:style=Bold");
+			text(Title,size=Font_Size,halign="left", valign="bottom",font="DejaVu Sans:style=Bold");
 }
