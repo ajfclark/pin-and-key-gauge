@@ -1,0 +1,15 @@
+{
+    "parameterSets": {
+        "Lockwood": {
+            "Font_Depth": "-0.8",
+            "Font_Size": "1.5",
+            "Number_of_Fragments": "6",
+            "Number_of_Pins": "11",
+            "Pin_Diameter": "0.115",
+            "Pin_Height_Base": "0.15",
+            "Pin_Height_Step": "0.015",
+            "Title": "Lockwood"
+        }
+    },
+    "fileFormatVersion": "1"
+}
