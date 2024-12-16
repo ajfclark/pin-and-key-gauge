@@ -24,44 +24,32 @@ b=thou(Pin_Height_Base);
 num=Number_of_Pins;
 r=d/2;
 
-difference()
-{
+difference() {
 	translate([-2.5,-Font_Size-1,0])
 		cube([num*d+5,b+num*s+Font_Size+2,1]);
-	for (i=[0:num-1]) {
-		translate([i*d,0,-0.01]) 
+	for (i=[0:num-1])
+		translate([i*d,0,-0.01])
 			cube([d*1.01,b+s*i,10]);
-	}
-	if(Font_Depth<0) {
-		markings();
-	}
-}
-if(Font_Depth>0) {
 	markings();
 }
+if(Font_Depth>0) markings();
 
 function thou(inch)=inch*25.4;
 
 module markings() {
 	translate([0,0,1]) {
-		for (i=[0:num-1]) {
+		for (i=[0:num-1])
 			translate([i*d+r,-0.5,0])
-				if(Font_Depth<0) {
-					translate([0,0,Font_Depth+.01])
-						number(i=i);
-				}
-				else {
+				if(Font_Depth<0)
+					translate([0,0,Font_Depth+.01]) number(i=i);
+				else
 					number(i=i);
-				}
-		}
-		if(Font_Depth<0) {
+		if(Font_Depth<0)
 			translate([0,b+num*s,Font_Depth+.01])
 				title();
-		}
-		else {
+		else
 			translate([0,b+num*s,0])
 				title();
-		}
 	}
 }
 
