@@ -1,6 +1,7 @@
 {
     "parameterSets": {
         "Lockwood": {
+            "Border": "2",
             "Font_Depth": "-1.5",
             "Font_Size": "3",
             "Number_of_Fragments": "4",
