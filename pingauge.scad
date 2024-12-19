@@ -5,14 +5,17 @@ Border=2; //0.1
 /* [Pin Parameters] */
 // Pin Type/Name
 Title="Lockwood";
-// Number of pins
-Number_of_Pins=11;
+// Number of different pin heights
+Number_of_Bittings=11;
+// The number to denote the first pin
+Pin_Numbering_Start=0;
 // The diameter of the pins (in inches)
-Pin_Diameter=0.115;
+Pin_Diameter=0.115; // 0.001
 // Height of the first pin (in inches)
-Pin_Height_Base=0.150;
+Pin_Height_Base=0.150; // 0.001
+
 // Change in height between pins (in inches)
-Pin_Height_Step=0.015;
+Pin_Height_Step=0.015; // 0.001
 
 /* [Font] */
 Font_Size=1.5; // 0.1
@@ -26,7 +29,7 @@ $fn=pow(2,Number_of_Fragments);
 d=thou(Pin_Diameter*2);
 s=thou(Pin_Height_Step);
 b=thou(Pin_Height_Base);
-num=Number_of_Pins;
+num=Number_of_Bittings;
 r=d/2;
 
 difference() {
@@ -66,7 +69,7 @@ module markings() {
 module number(i) {
 	color("blue")
 		linear_extrude(height=abs(Font_Depth))
-			text(str(i),size=Font_Size,halign="center", valign="top",font="DejaVu Sans:style=Bold");
+			text(str(i+Pin_Numbering_Start),size=Font_Size,halign="center", valign="top",font="DejaVu Sans:style=Bold");
 }
 
 module title() {
