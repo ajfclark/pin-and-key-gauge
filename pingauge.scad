@@ -1,8 +1,11 @@
-/* [Title] */
-Title="Lockwood";
+/* [Margins] */
 Thickness=2; // 0.1
+Border=2; //0.1
 
 /* [Pin Parameters] */
+// Pin Type/Name
+Title="Lockwood";
+// Number of pins
 Number_of_Pins=11;
 // The diameter of the pins (in inches)
 Pin_Diameter=0.115;
@@ -27,8 +30,8 @@ num=Number_of_Pins;
 r=d/2;
 
 difference() {
-	translate([-2.5,-Font_Size-1,0])
-		cube([num*d+5,b+num*s+Font_Size*2+2,Thickness]);
+	translate([-Border,-Font_Size-Border*2,0])
+		cube([num*d+Border*2,b+num*s+Font_Size*2+Border*3,Thickness]);
 	pins();
 	markings();
 }
@@ -46,7 +49,7 @@ module pins() {
 module markings() {
 	translate([0,0,Thickness]) {
 		for (i=[0:num-1])
-			translate([i*d+r,-0.5,0])
+			translate([i*d+r,-Border,0])
 				if(Font_Depth<0)
 					translate([0,0,Font_Depth+.01]) number(i=i);
 				else
