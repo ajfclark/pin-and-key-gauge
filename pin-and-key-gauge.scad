@@ -1,4 +1,5 @@
-/* [Margins] */
+/* [General] */
+Pin_or_Key_Gauge=0; //[0:Pin Gauge, 1:Key Gauge]
 Thickness=2; // 0.1
 Border=2; //0.1
 
@@ -13,23 +14,27 @@ Pin_Numbering_Start=0;
 Pin_Diameter=0.115; // 0.001
 // Height of the first pin (in inches)
 Pin_Height_Base=0.150; // 0.001
-
 // Change in height between pins (in inches)
 Pin_Height_Step=0.015; // 0.001
+// Diameter of the plug (in inches)
+Plug_Diameter=0.500; // 0.001
 
 /* [Font] */
-Font_Size=1.5; // 0.1
-Font_Depth=-0.75; // 0.1
+Font_Size=4; // 0.1
+Font_Depth=0.75; // 0.1
 
 /* [Rendering Options] */
 // Number of fragments, expressed as a power of 2
 Number_of_Fragments=4;
 
+marking_offset = Pin_or_Key_Gauge;
 $fn=pow(2,Number_of_Fragments);
+
 d=thou(Pin_Diameter*2);
 s=thou(Pin_Height_Step);
-b=thou(Pin_Height_Base);
-num=Number_of_Bittings;
+b=thou(marking_offset ? Plug_Diameter-Pin_Height_Base : Pin_Height_Base);
+num=Number_of_Bittings+marking_offset;
+pns=Pin_Numbering_Start-marking_offset;
 r=d/2;
 
 difference() {
@@ -46,12 +51,12 @@ module pins() {
 	color("red")
 	for (i=[0:num-1])
 		translate([i*d,0,-Thickness/2])
-			cube([d*1.01,b+s*i,Thickness*2]);
+			cube([d*1.01,b + (marking_offset ? -s : s )*i,Thickness*2]);
 }
 
 module markings() {
 	translate([0,0,Thickness]) {
-		for (i=[0:num-1])
+		for (i=[marking_offset:num-1])
 			translate([i*d+r,-Border,0])
 				if(Font_Depth<0)
 					translate([0,0,Font_Depth+.01]) number(i=i);
@@ -69,7 +74,7 @@ module markings() {
 module number(i) {
 	color("blue")
 		linear_extrude(height=abs(Font_Depth))
-			text(str(i+Pin_Numbering_Start),size=Font_Size,halign="center", valign="top",font="DejaVu Sans:style=Bold");
+			text(str(i+pns),size=Font_Size,halign="center", valign="top",font="DejaVu Sans:style=Bold");
 }
 
 module title() {
