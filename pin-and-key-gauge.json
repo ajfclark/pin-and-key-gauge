@@ -13,7 +13,7 @@
             "Plug_Diameter": "0.5",
             "Thickness": "2",
             "Title": "Lockwood",
-            "marking_offset": "0"
+            "Pin_Or_Key_Gauge": "0"
         },
         "Schlage": {
             "Border": "2",
@@ -28,7 +28,7 @@
             "Plug_Diameter": "0.5",
             "Thickness": "2",
             "Title": "Schlage",
-            "marking_offset": "0"
+            "Pin_Or_Key_Gauge": "0"
         },
         "Kwikset": {
             "Border": "2",
@@ -43,7 +43,7 @@
             "Plug_Diameter": "0.5",
             "Thickness": "2",
             "Title": "Kwikset",
-            "marking_offset": "0"
+            "Pin_Or_Key_Gauge": "0"
         },
         "Yale": {
             "Border": "2",
@@ -58,7 +58,7 @@
             "Plug_Diameter": "0.5",
             "Thickness": "2",
             "Title": "Yale",
-            "marking_offset": "0"
+            "Pin_Or_Key_Gauge": "0"
         }
     },
     "fileFormatVersion": "1"

@@ -1,7 +1,7 @@
 /* [General] */
+Pin_Or_Key_Gauge=0; //[0:Pin Gauge, 1:Key Gauge]
 Thickness=2; // 0.1
 Border=2; //0.1
-marking_offset=0; //[0:Pin Gauge, 1:Key Gauge]
 
 /* [Pin Parameters] */
 // Pin Type/Name
@@ -27,7 +27,9 @@ Font_Depth=0.75; // 0.1
 // Number of fragments, expressed as a power of 2
 Number_of_Fragments=4;
 
+marking_offset = Pin_Or_Key_Gauge;
 $fn=pow(2,Number_of_Fragments);
+
 d=thou(Pin_Diameter*2);
 s=thou(Pin_Height_Step);
 b=thou(marking_offset ? Plug_Diameter-Pin_Height_Base : Pin_Height_Base);
